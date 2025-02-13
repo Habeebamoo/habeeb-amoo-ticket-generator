@@ -65,6 +65,11 @@ header {
   width: 600px;
 }
 
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
 .ticket-header {
   display: flex;
   justify-content: space-between;

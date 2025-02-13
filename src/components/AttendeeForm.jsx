@@ -82,7 +82,7 @@ export default function AttendeeForm({ onNext, onPrev, setFormData }) {
             onChange={(e) => setMessage(e.target.value)}
           ></textarea>
         </div>
-        {error && <p style={{color: "red"}}>{error}</p>}
+        {error && <p className="error-message">{error}</p>}
         <div className="buttons">
           <button className="cancel-btn" onClick={onPrev}>Cancel</button>
           <button className="next-btn" onClick={handleSave}>Next</button>
