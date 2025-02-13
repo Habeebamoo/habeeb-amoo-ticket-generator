@@ -9,12 +9,11 @@ export default function AttendeeForm({ onNext, onPrev, setFormData }) {
 
   function imageUpload(e) {
     const file = e.target.files[0];
-    if(!file) return;
 
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      setImage(reader.result)
+    if(!file) {
+      return;
+    } else {
+      setImage(URL.createObjectURL(file))
     };
 
     hideFileText()
