@@ -5,11 +5,11 @@ export default function SuccessScreen() {
   let status;
 
   if(ticketType == "button 1") {
-    status = <>Type: Free</>
+    status = <small>Free</small>
   } else if(ticketType == "button2") {
-    status = <>Type: VIP</>
+    status = <small>VIP</small>
   } else {
-    status = <>Type: VVIP</>
+    status = <small>VVIP</small>
   }
 
   return (
@@ -27,18 +27,43 @@ export default function SuccessScreen() {
           <p>You can download or check your email for a copy</p>
         </div>
         <div className="ticket-image">
-          <img src="/public/ticket.svg" className="ticket-image-svg" />
-          {formData.image && 
-          <div className="ticket-profile">
-            <img  src={formData.image} />
+          <img src="/src/images/ticket.png" className="ticket-image-svg" />
+          <div className="header">
+            <h4 className="heading">Techember Fest "25</h4>
+            <p><small>04 Rumens road, Ikoyi Lagos</small></p>
+            <p><small>March 15 2025 | 7:00pm</small></p>
+            {formData.image && 
+              <div className="ticket-profile">
+                <img  src={formData.image} />
+              </div>
+            }
+            <div className="ticket-details-form">
+              <div className="row">
+                <div className="left">
+                  <small className="label">Name</small>
+                  <small className="value">{formData.name}</small>
+                </div>
+                <div className="right">
+                  <small className="label">Email</small>
+                  <div className="value truncate">{formData.email}</div>
+                </div>
+                <div className="left">
+                  <small className="label">Ticket</small>
+                  <small className="value">{status}</small>
+                </div>
+                <div className="right">
+                  <small className="label">Amount</small>
+                  <small className="value">1</small>
+                </div>
+              </div>
+              <div className="request-message">
+                <small className="label">Special Request</small>
+                <small className="value">
+                  {formData.message}
+                </small>
+              </div>
+            </div>
           </div>
-          }
-          <h1 className="heading">Techember<span>Fest "25</span></h1>
-          <div className="text">
-            <p>04 Ruments Road, Ikoyi Lagos</p>
-            <p>March 15 2025 | 7:00pm</p>
-          </div>
-          <p>{status}</p>
         </div>
         <div className="final-buttons">
           <button className="book-btn">Book Another Ticket</button>
@@ -48,3 +73,13 @@ export default function SuccessScreen() {
     </div>
   )
 }
+
+/*
+
+
+          <div className="text">
+            <p>04 Ruments Road, Ikoyi Lagos</p>
+            <p>March 15 2025 | 7:00pm</p>
+          </div>
+          <p>{status}</p>
+*/
