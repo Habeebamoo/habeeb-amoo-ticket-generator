@@ -1,8 +1,8 @@
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import ticketImg from "../images/ticket.png";
 import domtoimage from "dom-to-image-more";
 
-export default function SuccessScreen() {
+export default function SuccessScreen({ imageFile }) {
   const divRef = useRef(null);
   const formData = JSON.parse(localStorage.getItem("user-data")) || {};
   const ticketType = JSON.parse(localStorage.getItem('ticket-type')) || "";
@@ -19,15 +19,21 @@ export default function SuccessScreen() {
   }
 
   function downloadImage() {
-    domtoimage.toPng(divRef.current, {cacheBust: true })
-    .then((dataUrl) => {
-      const link = document.createElement('a');
-      link.href = dataUrl;
-      link.download = "downloaded-image.png";
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link)
-    }).catch((err) => console.log("Error: ", err))
+    if(divRef.current) {
+      setTimeout(() => {
+        domtoimage.toPng(divRef.current, {
+          cacheBust: true,
+          useCORS: true
+        }).then((dataUrl) => {
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = "downloaded-image.png";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link)
+        }).catch((err) => console.log('Error: getting image from div', err));
+      }, 500)
+    }
   }
 
   return (
@@ -45,16 +51,20 @@ export default function SuccessScreen() {
           <p>You can download or check your email for a copy</p>
         </div>
         <div className="ticket-image" ref={divRef}>
-          <img src={ticketImg} className="ticket-image-svg" />
+          <img 
+            src={ticketImg} 
+            className="ticket-image-svg"
+          />
           <div className="header">
             <h4 className="heading">Techember Fest "25</h4>
             <p><small>04 Rumens road, Ikoyi Lagos</small></p>
             <p><small>March 15 2025 | 7:00pm</small></p>
-            {formData.image && 
-              <div className="ticket-profile">
-                <img  src={formData.image} />
-              </div>
-            }
+            <div className="ticket-profile">
+              <img 
+                src={imageFile} 
+                crossOrigin="anonymous"
+              />
+            </div>
             <div className="ticket-details-form">
               <div className="row">
                 <div className="left">
@@ -85,7 +95,7 @@ export default function SuccessScreen() {
         </div>
         <div className="final-buttons">
           <button className="book-btn">Book Another Ticket</button>
-          <button className="download-btn" onClick={downloadImage}>Download Ticket</button>
+          <button className="download-btn" onClick={downloadImage} disabled={!imageFile}>Download Ticket</button>
         </div>
       </div>
     </div>

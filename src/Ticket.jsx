@@ -5,7 +5,7 @@ import SuccessScreen from "./components/SuccessScreen";
 
 function Ticket() { 
   const [step, setStep] = useState(1);
-  const [objectUrl, setObjectUrl] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem("user-data");
     return savedData ? JSON.parse(savedData) : {};
@@ -14,8 +14,15 @@ function Ticket() {
   return (
     <>
       {step == 1 && <TicketCard onNext={() => setStep(2)} />}
-      {step == 2 && <AttendeeForm onNext={() => setStep(3)} onPrev={() => setStep(1)} setFormData={setFormData} />}
-      {step == 3 && <SuccessScreen />}
+      {step == 2 && <AttendeeForm onNext={() => 
+        setStep(3)} onPrev={() => setStep(1)} 
+        setFormData={setFormData} 
+        imageFile={imageFile} 
+        setImageFile={setImageFile} 
+      />}
+      {step == 3 && <SuccessScreen 
+        imageFile={imageFile} 
+      />}
     </>
   )
 }

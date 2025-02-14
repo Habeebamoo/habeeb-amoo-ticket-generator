@@ -1,24 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import download from "../images/download.svg"
 
-export default function AttendeeForm({ onNext, onPrev, setFormData }) {
+export default function AttendeeForm({ onNext, onPrev, setFormData, imageFile, setImageFile }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
-  const [image, setImage] = useState(null);
   const [error, setError] = useState("");
 
   function imageUpload(e) {
     const file = e.target.files[0];
-
-    if(!file) {
-      return;
-    } else {
-      setImage(URL.createObjectURL(file))
-    };
-
-    hideFileText()
-  }
+    if(file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImageFile(reader.result)
+      }
+      reader.readAsDataURL(file)
+    }
+    
+    hideFileText();
+  };
 
   function hideFileText() {
     const text = document.querySelector(".file-box-span");
@@ -28,12 +28,12 @@ export default function AttendeeForm({ onNext, onPrev, setFormData }) {
   }
 
   function handleSave() {
-    if(!name || !email || !image || !message) {
+    if(!name || !email || !message) {
       setError("All fields are required");
       return;
     }
 
-    const data = { name, email, message, image };
+    const data = { name, email, message };
     localStorage.setItem("user-data", JSON.stringify(data));
     setFormData(data);
     onNext();
@@ -54,8 +54,8 @@ export default function AttendeeForm({ onNext, onPrev, setFormData }) {
         <label htmlFor="fileInput" className="file-box">
           <img src={download} className="file-box-icon"/>
           <span className="file-box-span">Drag & Drop or Click to upload</span>
-          {image && <div className="attendee-img-container">
-            <img src={image} />
+          {imageFile && <div className="attendee-img-container">
+            <img src={imageFile} />
           </div>}
         </label>
       </div>
@@ -97,3 +97,16 @@ export default function AttendeeForm({ onNext, onPrev, setFormData }) {
     </main>
   )
 }
+
+/*
+
+    const file = e.target.files[0];
+
+    if(!file) {
+      return;
+    } else {
+      setImage(URL.createObjectURL(file))
+    };
+
+    hideFileText()
+*/
