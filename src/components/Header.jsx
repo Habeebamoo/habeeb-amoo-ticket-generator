@@ -1,9 +1,13 @@
+import logo from "../images/logo.svg"
+
 function Header({ toAbout, toEvents }) {
   return (
     <>
       <header>
         <nav className="header-nav">
-          <div className="logo">TICZ</div>
+          <div className="logo">
+            <img src={logo} alt="logo" />
+          </div>
           <ul>
             <li onClick={toEvents} style={{ color: "white"}}>Events</li>
             <li>My Tickets</li>
