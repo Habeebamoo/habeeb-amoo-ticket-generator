@@ -1,4 +1,5 @@
 import { useState } from "react";
+import downloadSvg from "../images/dowmload.svg";
 
 export default function AttendeeForm({ onNext, onPrev, setFormData }) {
   const [name, setName] = useState("");
@@ -48,7 +49,9 @@ export default function AttendeeForm({ onNext, onPrev, setFormData }) {
       <div className="ticket-box">
       <div className="header-intro">
         <input type="file" id="fileInput" accept="image/*" onChange={imageUpload} hidden/>
-        <label htmlFor="fileInput" className="file-box"><span className="file-box-span">Drag & Drop or Click to upload</span>
+        <label htmlFor="fileInput" className="file-box">
+          <img src={downloadSvg} />
+          <span className="file-box-span">Drag & Drop or Click to upload</span>
           {image && <div className="attendee-img-container">
             <img src={image} />
           </div>}
