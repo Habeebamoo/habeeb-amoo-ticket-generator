@@ -1,12 +1,12 @@
 import { useState } from "react";
-import downloadSvg from "../images/dowmload.svg";
+import download from "../images/download.svg"
 
 export default function AttendeeForm({ onNext, onPrev, setFormData }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [image, setImage] = useState(null);
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
 
   function imageUpload(e) {
     const file = e.target.files[0];
@@ -22,7 +22,9 @@ export default function AttendeeForm({ onNext, onPrev, setFormData }) {
 
   function hideFileText() {
     const text = document.querySelector(".file-box-span");
-    text.style.display = "none"
+    const icon = document.querySelector(".file-box-icon");
+    icon.style.display = "none";
+    text.style.display = "none";
   }
 
   function handleSave() {
@@ -47,10 +49,10 @@ export default function AttendeeForm({ onNext, onPrev, setFormData }) {
       <div className="progress-bar-2"></div>
     </div>
       <div className="ticket-box">
-      <div className="header-intro">
+      <div className="header-intro-state">
         <input type="file" id="fileInput" accept="image/*" onChange={imageUpload} hidden/>
         <label htmlFor="fileInput" className="file-box">
-          <img src={downloadSvg} />
+          <img src={download} className="file-box-icon"/>
           <span className="file-box-span">Drag & Drop or Click to upload</span>
           {image && <div className="attendee-img-container">
             <img src={image} />

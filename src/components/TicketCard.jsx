@@ -1,12 +1,19 @@
 import { useState } from "react";
 
 export default function TicketCard({ onNext }) {
-  const [button, setButton] = useState(null);
+  const [button, setButton] = useState("button1");
 
   function handleClick(buttonIndex) {
     setButton(buttonIndex);
     localStorage.setItem('ticket-type', JSON.stringify(buttonIndex))
   }
+
+  function saveTicketsNo() {
+    const ticketsNo = document.querySelector('#select');
+    const num = ticketsNo.value;
+    localStorage.setItem('ticketsNo', JSON.stringify(num))
+  }
+
 
   return (
     <main className="ticket-container">
@@ -41,7 +48,7 @@ export default function TicketCard({ onNext }) {
           </div>
         </div>
         <p>Number of Tickets:</p>
-        <select name="" id="">
+        <select id="select" onClick={saveTicketsNo}>
           <option value="1">1</option>
           <option value="2">2</option>
           <option value="3">3</option>
@@ -53,7 +60,7 @@ export default function TicketCard({ onNext }) {
         </select>
         <div className="buttons">
           <button className="cancel-btn">Cancel</button>
-          <button className="next-btn" onClick={onNext}>Next</button>
+          <button className="next-btn" onClick={onNext}>{button == "button1" ? "Get My Free Ticket" : "Proceed to Payment"}</button>
         </div>
       </div>
     </div>

@@ -117,6 +117,12 @@ header {
   text-align: center;
 }
 
+.header-intro-state {
+  background: linear-gradient(#06343b, #1e1e1e);
+  border-radius: 20px;
+  text-align: center;
+}
+
 .final-header-intro {
   text-align: center;
 }
@@ -174,18 +180,22 @@ select, input, textarea {
 
 .file-box {
   padding: 20px;
-  width: 100%;
+  width: 60%;
+  margin: 0 auto;
   height: 200px;
   background-color: #0d4e5b;
   border: 2px solid #0d4e5b;
   border-radius: 20px;
   cursor: pointer;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.file-box img {
-  height: 20px;
-  margin: 0 auto;
+.file-box-icon {
+  height: 30px;
+  margin-bottom: 10px;
 }
 
 input, textarea {
@@ -250,6 +260,7 @@ input, textarea {
 .attendee-img-container {
   height: 180px;
   width: 180px;
+  max-height: 100%;
 }
 
 .attendee-img-container img {
@@ -260,7 +271,7 @@ input, textarea {
 .ticket-image {
   margin: 30px;
   position: relative;
-  height: 430px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -272,12 +283,12 @@ input, textarea {
 
 .ticket-image .header {
   border: 2px solid #093e48;
-  height: 320px;
+  height: 370px;
   border-radius: 20px;
   position: absolute;
   top: 20px;
-  width: 45%;
-  left: 120px;
+  width: 55%;
+  left: 98px;
   text-align: center;
   line-height: 1px;
 }
@@ -302,14 +313,14 @@ input, textarea {
 
 .ticket-details-form {
   background-color: #0a444d;
-  width: 90%;
+  width: 95%;
   margin:  0 auto;
   border-radius: 10px;
 }
 
 .ticket-details-form .row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 50% 50%;
   padding: 5px;
   width: 90%;
   margin: 0 auto;
@@ -320,6 +331,7 @@ input, textarea {
   border-right: 1px solid #0d4e5b;
   border-bottom: 2px solid #0d4e5b;
   padding: 8px;
+  line-height: 10px;
 }
 
 .ticket-details-form .right {
@@ -327,7 +339,7 @@ input, textarea {
   border-left: 1px solid #0d4e5b;
   border-bottom: 2px solid #0d4e5b;
   padding: 8px;
-
+  line-height: 10px;
 }
 
 .ticket-details-form .label {
@@ -340,7 +352,10 @@ input, textarea {
 }
 
 .truncate {
-  font-size: 5px;
+  display: inline-block;
+  max-width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .request-message {

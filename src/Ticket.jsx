@@ -5,6 +5,7 @@ import SuccessScreen from "./components/SuccessScreen";
 
 function Ticket() { 
   const [step, setStep] = useState(1);
+  const [objectUrl, setObjectUrl] = useState(null);
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem("user-data");
     return savedData ? JSON.parse(savedData) : {};
