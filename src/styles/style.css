@@ -427,12 +427,11 @@ input, textarea {
 
   .ticket-image .header {
     width: 100%;
-    left: 7px;
+    left: 5px;
     padding: 10px 0;
   }
 
   .ticket-profile {
     margin: 20px auto;
   }
-
 }
