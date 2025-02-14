@@ -1,4 +1,5 @@
 import ticketImg from "../images/ticket.png";
+import ticket from "../images/ticket2.svg";
 
 export default function SuccessScreen() {
   const formData = JSON.parse(localStorage.getItem("user-data")) || {};
@@ -29,7 +30,7 @@ export default function SuccessScreen() {
           <p>You can download or check your email for a copy</p>
         </div>
         <div className="ticket-image">
-          <img src={ticketImg} className="ticket-image-svg" />
+          <img src={ticket} className="ticket-image-svg" />
           <div className="header">
             <h4 className="heading">Techember Fest "25</h4>
             <p><small>04 Rumens road, Ikoyi Lagos</small></p>
